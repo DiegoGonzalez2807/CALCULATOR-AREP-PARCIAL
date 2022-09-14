@@ -16,7 +16,7 @@ public class Server {
     public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = null;
         try {
-            serverSocket = new ServerSocket(35000);
+            serverSocket = new ServerSocket(getPort());
         } catch (IOException e) {
             System.err.println("Could not listen on port: 35000.");
             System.exit(1);
@@ -103,6 +103,15 @@ public class Server {
             return "qck";
         }
         return null;
+    }
+
+    public static int getPort(){
+        if(System.getenv("PORT")!=null){
+            return new Integer(System.getenv("PORT"));
+        }
+        else{
+            return 4567;
+        }
     }
 
     }
