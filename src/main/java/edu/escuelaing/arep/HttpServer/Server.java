@@ -44,6 +44,9 @@ public class Server {
                 if(flag){
                     flag = false;
                     resource = inputLine.split(" ")[1];
+                    if(resource.equals("/")){
+                        System.out.print("ARREGLO DE SERVIDOR");
+                    }
                     reviewFirstLine(resource,out);
                 }
                 if (!in.ready()) {break; }
@@ -68,6 +71,9 @@ public class Server {
                 String possibleJson = "{value:"+getResult(value,operation)+"}";
                 out.println(HTTP_OK_HEADER+possibleJson);
             }
+        }
+        else if(resource.contains("/")){
+            out.println(HTTP_OK_HEADER+"{value:}");
         }
         else{
             System.out.println("NO SE PUDO LEER DE MANERA CORRECTA EL RECURSO");
